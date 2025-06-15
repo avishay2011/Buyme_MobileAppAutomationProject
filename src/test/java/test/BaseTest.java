@@ -151,7 +151,6 @@ public class BaseTest {
         }
     }
 
-
     public void backToBuyMeAPP() {
         try {
             driver.activateApp("il.co.mintapp.buyme");
