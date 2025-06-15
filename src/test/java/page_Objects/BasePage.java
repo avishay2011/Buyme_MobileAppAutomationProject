@@ -15,6 +15,7 @@ import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
@@ -25,28 +26,26 @@ public class BasePage {
     protected static AndroidDriver driver;
     protected static WebDriverWait wait;
     protected Actions action;
-    public static final String configPath ="C:/Users/avish/IdeaProjects/MobileTest/ReadingFromFile/config.xml";
+    public static final String configPath = "C:/Users/avish/IdeaProjects/MobileTest/ReadingFromFile/config.xml";
 
     public BasePage(AndroidDriver driver) {
         this.driver = driver;
-        this.action= new Actions(driver);
+        this.action = new Actions(driver);
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    ///Action methods on elements : click, send keys and etc
+    /// Action methods on elements : click, send keys and etc
 
     public void click(By elementLocation) {
         try {
-            WebElement element=waitVisibility(elementLocation);
+            WebElement element = waitVisibility(elementLocation);
             element.click();
             Allure.step("Clicking on element " + elementLocation.toString());
-        }
-        catch (NoSuchElementException | TimeoutException error){
+        } catch (NoSuchElementException | TimeoutException error) {
             Allure.step("Clicking failed: Element not found or timeout " + error.getMessage(), Status.FAILED);
             takeScreenShot(driver);
             throw error;
-        }
-        catch (Exception error) {
+        } catch (Exception error) {
             Allure.step("Clicking failed: Unexpected error - " + error.getMessage(), Status.FAILED);
             takeScreenShot(driver);
             throw new RuntimeException("Click failed on element: " + elementLocation, error);
@@ -56,17 +55,15 @@ public class BasePage {
 
     public void sendKeys(By elementLocation, String text) {
         try {
-            WebElement element=waitVisibility(elementLocation);
+            WebElement element = waitVisibility(elementLocation);
             element.clear();
             element.sendKeys(text);
             Allure.step("Sending keys to the element " + elementLocation.toString());
-        }
-        catch (NoSuchElementException | TimeoutException error){
+        } catch (NoSuchElementException | TimeoutException error) {
             Allure.step("Sending keys failed: : Element not found or timeout" + error.getMessage(), Status.FAILED);
             takeScreenShot(driver);
-            throw  error;
-        }
-        catch (Exception error) {
+            throw error;
+        } catch (Exception error) {
             Allure.step("Send keys failed: Unexpected error - " + error.getMessage(), Status.FAILED);
             takeScreenShot(driver);
             throw error;
@@ -95,7 +92,7 @@ public class BasePage {
     }
 
 
-    public void scrollToVisibleTextAndClick(String visibleText,By elementLocation) {
+    public void scrollToVisibleTextAndClick(String visibleText, By elementLocation) {
         int maxSwipes = 5;
         boolean found = false;
 
@@ -103,7 +100,7 @@ public class BasePage {
             try {
                 // חיפוש לפי הטקסט הגלוי על האלמנט
                 WebElement element1 = driver.findElement(By.xpath("//*[contains(@text, '" + visibleText + "')]"));
-                     driver.findElement(elementLocation).click();
+                driver.findElement(elementLocation).click();
                 found = true;
                 break;
             } catch (Exception e) {
@@ -118,20 +115,16 @@ public class BasePage {
     }
 
 
-
-
     public void hoverToElement(By elementLocation) { /// this function have written for fields that user need to hover on it before the click fuction is possible
         try {
-            WebElement element=waitVisibility(elementLocation);
+            WebElement element = waitVisibility(elementLocation);
             action.moveToElement(element).build().perform();
             Allure.step("Hovering to element " + elementLocation.toString());
-        }
-        catch (NoSuchElementException | TimeoutException error){
+        } catch (NoSuchElementException | TimeoutException error) {
             Allure.step("Hovering to element failed: : Element not found or timeout" + error.getMessage(), Status.FAILED);
             takeScreenShot(driver);
-            throw  error;
-        }
-        catch (Exception error) {
+            throw error;
+        } catch (Exception error) {
             Allure.step("Send keys failed: Unexpected error - " + error.getMessage(), Status.FAILED);
             takeScreenShot(driver);
             throw error;
@@ -158,9 +151,8 @@ public class BasePage {
     public void scrollDown(int maxScrolls) {
         for (int i = 0; i <= maxScrolls; i++) {
             swipeDown();
-            }
         }
-
+    }
 
 
     public List<WebElement> getElementsFromListLocation(By locator) {
@@ -172,7 +164,7 @@ public class BasePage {
 
     public String getText(By elementLocation) {
         try {
-            WebElement element=waitVisibility(elementLocation);
+            WebElement element = waitVisibility(elementLocation);
             String text = element.getText();
             Allure.addAttachment("Text from element", text);
             return text;
@@ -186,9 +178,9 @@ public class BasePage {
 
     public String getColor(By elementLocation) {
         try {
-            WebElement element=waitVisibility(elementLocation);
+            WebElement element = waitVisibility(elementLocation);
             String color = element.getCssValue("color");  //return rgba that is the format that define color in css
-            Allure.addAttachment("Element color is :",color);
+            Allure.addAttachment("Element color is :", color);
             return color;
         } catch (Exception error) {
             Allure.step("❌ Failed to get color from element: " + elementLocation + "   →   " + error.getMessage(), Status.FAILED);
@@ -198,9 +190,9 @@ public class BasePage {
     }
 
 
-    public String getInputFieldValue(By elementLocation){  //Get the value displayed in the input field after user input
+    public String getInputFieldValue(By elementLocation) {  //Get the value displayed in the input field after user input
         try {
-            WebElement element=waitVisibility(elementLocation);
+            WebElement element = waitVisibility(elementLocation);
             String text = element.getAttribute("value");
             Allure.addAttachment("Text from element", text);
             return text;
@@ -213,11 +205,12 @@ public class BasePage {
 
     ////Validations
     //Not verification . I use it just for checking verification methods in page objects
-    @Step("Check that the requested page is loaded without any errors or mistakes") ///General method that can be used for any page for checking that one of the major error not appears
+    @Step("Check that the requested page is loaded without any errors or mistakes")
+    ///General method that can be used for any page for checking that one of the major error not appears
     public boolean pageLoadedWithNoErrors() {
-        wait.until( webDriver -> ((JavascriptExecutor) webDriver)
+        wait.until(webDriver -> ((JavascriptExecutor) webDriver)
                 .executeScript("return document.readyState").equals("complete"));
-        boolean noErrors=true;
+        boolean noErrors = true;
         String pageSource = driver.getPageSource().toLowerCase();
         String[] criticalErrors = {
                 "internal server error",
@@ -227,9 +220,9 @@ public class BasePage {
         };
 
         for (String error : criticalErrors) {
-            if(pageSource.contains(error)) {
+            if (pageSource.contains(error)) {
                 System.out.println("הודעת שגיאה התגלתה בדף: " + error);
-                noErrors=false;
+                noErrors = false;
             }
 
         }
@@ -237,13 +230,12 @@ public class BasePage {
     }
 
 
-    public boolean isElementDisplayed(By elementLocation){
+    public boolean isElementDisplayed(By elementLocation) {
         try {
             waitVisibility(elementLocation);
             Allure.step("Element is displayed " + elementLocation.toString());
             return true;
-        }
-        catch(Exception error){
+        } catch (Exception error) {
             Allure.step("❌ Failed to get element visibility: " + elementLocation.toString() + " → " + error.getMessage(), Status.FAILED);
             takeScreenShot(driver);
             return false;
@@ -252,27 +244,27 @@ public class BasePage {
 
     @Step("Verify that error message is displayed *below* the input field") //להעביר ל BASE
     //////lower y value means that the element located actually higher on the screen
-    public boolean isElement1LocatedBelowElement2(By upperElement,By lowerElement) {
+    public boolean isElement1LocatedBelowElement2(By upperElement, By lowerElement) {
         try {
             Point upperElementPoint = waitVisibility(upperElement).getLocation();
             Point lowerElementPoint = waitVisibility(lowerElement).getLocation();
             if (upperElementPoint.getY() < lowerElementPoint.getY()) {
-                Allure.step("✔ Element " + lowerElement + " is correctly displayed below " + upperElement );
+                Allure.step("✔ Element " + lowerElement + " is correctly displayed below " + upperElement);
                 return true;
             } else {
-                Allure.step("❌ Element " + lowerElement + " is NOT displayed below " + upperElement, Status.FAILED );
+                Allure.step("❌ Element " + lowerElement + " is NOT displayed below " + upperElement, Status.FAILED);
                 takeScreenShot(driver);
                 return false;
             }
         } catch (Exception error) {
-            Allure.step("❌ Exception during element position check: " + error.getMessage(), Status.FAILED );
+            Allure.step("❌ Exception during element position check: " + error.getMessage(), Status.FAILED);
             takeScreenShot(driver);
             return false;
         }
     }
 
     @Step
-    public boolean areDropdownValuesMatchExpected(List<String> expectedValues,By actualValues) {
+    public boolean areDropdownValuesMatchExpected(List<String> expectedValues, By actualValues) {
         List<WebElement> actualList = getElementsFromListLocation(actualValues);
         String actualText;
         String expectedText;
@@ -281,9 +273,9 @@ public class BasePage {
             expectedText = expectedValues.get(i).trim();
             System.out.println(actualText);
             if (!expectedText.equalsIgnoreCase(actualText)) {
-                Allure.step("Mismatch at index : " +i);
-                Allure.step("Expected : " +expectedText);
-                Allure.step("Actual : "   +actualText );
+                Allure.step("Mismatch at index : " + i);
+                Allure.step("Expected : " + expectedText);
+                Allure.step("Actual : " + actualText);
                 return false;
             }
         }

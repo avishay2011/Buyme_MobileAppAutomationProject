@@ -14,6 +14,7 @@ import org.testng.asserts.SoftAssert;
 import org.xml.sax.SAXException;
 import page_Objects.*;
 import verifications.Verifications;
+
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.net.URL;
@@ -29,8 +30,8 @@ public class BaseTest {
 
     //attributes
     protected AndroidDriver driver;
-    public    Actions actions;
-    public    WebDriverWait wait;
+    public Actions actions;
+    public WebDriverWait wait;
     protected SoftAssert softAssert;
     protected HomePage homePage;
     protected RegistrationPage_Step1_InsertEmail registrationPage_Step1_InsertEmail;
@@ -46,7 +47,6 @@ public class BaseTest {
     protected SelectGift_Flows selectGiftFlows;
     protected CheckGiftCardBalance_Flows checkGiftCardBalanceFlows;
     protected Verifications verifications;
-
 
 
     //Calling to page objects
@@ -81,13 +81,13 @@ public class BaseTest {
         couponPage = new Coupon_Page(driver);
         purchaseGiftCard_Step1_Page = new Purchase_GiftCard_Step1_Page(driver);
         purchaseGiftCard_Step2_Page = new Purchase_GiftCard_Step2_Page(driver);
-        profileAndInfo_Page=new ProfileAndInfo_Page(driver);
-        assigningGifts_page=new AssigningGifts_Page(driver);
-        registrationAndLoginFlows=new RegistrationAndLogin_Flows(driver);
-        filterAndSearchGiftsFlows=new FilterAndSearchGifts_Flows(driver);
-        selectGiftFlows=new SelectGift_Flows(driver);
-        checkGiftCardBalanceFlows=new CheckGiftCardBalance_Flows(driver);
-        verifications=new Verifications(driver,softAssert);
+        profileAndInfo_Page = new ProfileAndInfo_Page(driver);
+        assigningGifts_page = new AssigningGifts_Page(driver);
+        registrationAndLoginFlows = new RegistrationAndLogin_Flows(driver);
+        filterAndSearchGiftsFlows = new FilterAndSearchGifts_Flows(driver);
+        selectGiftFlows = new SelectGift_Flows(driver);
+        checkGiftCardBalanceFlows = new CheckGiftCardBalance_Flows(driver);
+        verifications = new Verifications(driver, softAssert);
 
 
     }
@@ -152,7 +152,7 @@ public class BaseTest {
     }
 
 
-    public void backToBuyMeAPP(){
+    public void backToBuyMeAPP() {
         try {
             driver.activateApp("il.co.mintapp.buyme");
         } catch (Exception e) {

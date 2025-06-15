@@ -8,13 +8,13 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class BirthDayGifts_Page extends BasePage{
+public class BirthDayGifts_Page extends BasePage {
     public BirthDayGifts_Page(AndroidDriver driver) {
         super(driver);
     }
 
     //elements
-    private By birthDay_gifts_List=By.id("il.co.mintapp.buyme:id/businessName");
+    private By birthDay_gifts_List = By.id("il.co.mintapp.buyme:id/businessName");
 
     private List<WebElement> getBirthDayGiftsList() {
         return getElementsFromListLocation(birthDay_gifts_List);
@@ -22,17 +22,18 @@ public class BirthDayGifts_Page extends BasePage{
 
     //Methods
     @Step("Verify that the list of birthday gifts is visible and all elements are displayed")
-    public boolean isBirthDayGiftsDisplayed(){
-        List<WebElement> birthDayGiftsList=getBirthDayGiftsList();
-        return !birthDayGiftsList.isEmpty() && birthDayGiftsList.stream().allMatch(WebElement::isDisplayed) ;
+    public boolean isBirthDayGiftsDisplayed() {
+        List<WebElement> birthDayGiftsList = getBirthDayGiftsList();
+        return !birthDayGiftsList.isEmpty() && birthDayGiftsList.stream().allMatch(WebElement::isDisplayed);
     }
+
     @Step("Select gift from list")  //Open dropdown and select value
-    public BirthDayGifts_Page selectGift(String giftForSearch){
-        List<WebElement> birthDayGiftsList=getBirthDayGiftsList();
-        for (WebElement element:birthDayGiftsList){
-            if(element.getText().toLowerCase().contains(giftForSearch)){
-               element.click();
-               break;
+    public BirthDayGifts_Page selectGift(String giftForSearch) {
+        List<WebElement> birthDayGiftsList = getBirthDayGiftsList();
+        for (WebElement element : birthDayGiftsList) {
+            if (element.getText().toLowerCase().contains(giftForSearch)) {
+                element.click();
+                break;
             }
         }
         return this;

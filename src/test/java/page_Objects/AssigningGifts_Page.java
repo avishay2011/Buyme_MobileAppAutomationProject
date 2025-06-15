@@ -7,6 +7,7 @@ import io.qameta.allure.model.Status;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import java.util.List;
 
 public class AssigningGifts_Page extends BasePage {
@@ -26,7 +27,8 @@ public class AssigningGifts_Page extends BasePage {
 
     // Action Methods
 
-    @Step("Send keys '{gift card code}' on {gift card field _Field}")  // Types the given gift card code into the gift card input field and hides the keyboard.
+    @Step("Send keys '{gift card code}' on {gift card field _Field}")
+    // Types the given gift card code into the gift card input field and hides the keyboard.
     public AssigningGifts_Page sendKeysGiftCardCode(String giftCardCode) {
         sendKeys(giftCardCodeField, giftCardCode);
         driver.hideKeyboard();
@@ -50,7 +52,8 @@ public class AssigningGifts_Page extends BasePage {
         return this;
     }
 
-    @Step("Select year on date picker")  // Selects the year on the date picker by clicking the next button until the year appears or max clicks reached
+    @Step("Select year on date picker")
+    // Selects the year on the date picker by clicking the next button until the year appears or max clicks reached
     public AssigningGifts_Page select_Year_DatePicker(String year) throws InterruptedException {
         String selectedDateOnScreen = driver.findElement(selectedDate).getAttribute("content-desc");
         int clicksCount = 0;
@@ -65,7 +68,8 @@ public class AssigningGifts_Page extends BasePage {
         return this;
     }
 
-    @Step("Select month on date picker")     // Selects the month on the date picker by clicking the next button until the month appears or max clicks reached
+    @Step("Select month on date picker")
+    // Selects the month on the date picker by clicking the next button until the month appears or max clicks reached
     public AssigningGifts_Page select_Month_DatePicker(String month) throws InterruptedException {
         String selectedDateOnScreen = driver.findElement(selectedDate).getAttribute("content-desc");
         int clicksCount = 0;
@@ -103,7 +107,8 @@ public class AssigningGifts_Page extends BasePage {
         return this;
     }
 
-    @Step("Click add gift card button")       ///* Scrolls down once and clicks the "Add Gift Card" button.
+    @Step("Click add gift card button")
+    ///* Scrolls down once and clicks the "Add Gift Card" button.
     public AssigningGifts_Page clickAddGiftCard() {
         scrollDown(1);
         click(addGifcardButton);
@@ -115,5 +120,6 @@ public class AssigningGifts_Page extends BasePage {
         WebElement toastView = wait.until(ExpectedConditions.presenceOfElementLocated(
                 By.xpath("//android.widget.Toast[1]")
         ));
-        return toastView.getText();}
+        return toastView.getText();
+    }
 }

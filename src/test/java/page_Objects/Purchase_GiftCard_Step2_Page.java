@@ -10,14 +10,14 @@ import java.io.IOException;
 
 import static utils.Utilities.readFromThisFile;
 
-public class Purchase_GiftCard_Step2_Page extends BasePage{
+public class Purchase_GiftCard_Step2_Page extends BasePage {
     public Purchase_GiftCard_Step2_Page(AndroidDriver driver) {
         super(driver);
     }
 
     //Elements
 
-    private By pageTitle=By.id("il.co.mintapp.buyme:id/title");
+    private By pageTitle = By.id("il.co.mintapp.buyme:id/title");
 
     //Functions
     //Method  verify by title that purchase page step 2 opened b

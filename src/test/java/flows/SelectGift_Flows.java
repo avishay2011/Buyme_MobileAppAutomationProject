@@ -18,12 +18,12 @@ public class SelectGift_Flows extends BaseTest {
         this.driver = driver;
         this.registrationPage_Step1_InsertEmail = new RegistrationPage_Step1_InsertEmail(driver);
         this.homePage = new HomePage(driver);
-        this.softAssert =new SoftAssert();
-        this.birthDayGiftsPage=new BirthDayGifts_Page(driver);
-        this.couponPage=new Coupon_Page(driver);
-        this.purchaseGiftCard_Step1_Page=new Purchase_GiftCard_Step1_Page(driver);
-        this.purchaseGiftCard_Step2_Page=new Purchase_GiftCard_Step2_Page(driver);
-        this.verifications=new Verifications(driver,softAssert);
+        this.softAssert = new SoftAssert();
+        this.birthDayGiftsPage = new BirthDayGifts_Page(driver);
+        this.couponPage = new Coupon_Page(driver);
+        this.purchaseGiftCard_Step1_Page = new Purchase_GiftCard_Step1_Page(driver);
+        this.purchaseGiftCard_Step2_Page = new Purchase_GiftCard_Step2_Page(driver);
+        this.verifications = new Verifications(driver, softAssert);
     }
 
     public SelectGift_Flows checkPageReadyAndPreConditions() throws ParserConfigurationException, IOException, SAXException {

@@ -10,7 +10,7 @@ import java.util.List;
 public class HomePage extends BasePage {
 
     //constructor
-    public HomePage(AndroidDriver driver){
+    public HomePage(AndroidDriver driver) {
         super(driver);
     }
 
@@ -26,24 +26,24 @@ public class HomePage extends BasePage {
 
     @Step("Click - \"Login\" - button")
     // Clicks the login button
-    public HomePage navigateToRegistrationPage(){
+    public HomePage navigateToRegistrationPage() {
         click(login_Button);
         return this;
     }
 
     @Step("Navigate to profile and information page")
     // Clicks the profile tab to navigate to profile and info page
-    public HomePage navigateToProfileAndInfoPage(){
+    public HomePage navigateToProfileAndInfoPage() {
         click(profileAndInfoLink);
         return this;
     }
 
     @Step("Select  category  by  dropdown")
     // Selects a category by matching text in dropdown list
-    public HomePage selectCategory(String category){
+    public HomePage selectCategory(String category) {
         List<WebElement> dropDownList_AmountsValues_Elems = driver.findElements(gifts_Links);
-        for (WebElement elem : dropDownList_AmountsValues_Elems){
-            if(elem.getText().contains(category)){
+        for (WebElement elem : dropDownList_AmountsValues_Elems) {
+            if (elem.getText().contains(category)) {
                 elem.click();
                 break;
             }
@@ -53,21 +53,21 @@ public class HomePage extends BasePage {
 
     @Step("Select  category  by  dropdown")
     // Clicks the fashion brands category
-    public HomePage selectFashionBrandsCategory(){
+    public HomePage selectFashionBrandsCategory() {
         click(fashionBrandsCategory);
         return this;
     }
 
     @Step("Click - find gift - button")
     // Clicks the search button to initiate gift search
-    public HomePage clickFindMeGift(){
+    public HomePage clickFindMeGift() {
         click(searchButton);
         return this;
     }
 
     @Step("Click \"Clear search\" button")
     // Clicks the button to clear the search input field
-    public HomePage clearSearch(){
+    public HomePage clearSearch() {
         click(clearSearch_Button);
         return this;
     }

@@ -19,28 +19,28 @@ public class FilterAndSearchGifts_Flows extends BaseTest {
         this.driver = driver;
         this.registrationPage_Step1_InsertEmail = new RegistrationPage_Step1_InsertEmail(driver);
         this.homePage = new HomePage(driver);
-        this.searchResults_page=new SearchResults_Page(driver);
-        this.softAssert =new SoftAssert();
-        this.verifications=new Verifications(driver,softAssert);
+        this.searchResults_page = new SearchResults_Page(driver);
+        this.softAssert = new SoftAssert();
+        this.verifications = new Verifications(driver, softAssert);
     }
 
     private FilterAndSearchGifts_Flows applyFiltersAndVerify() throws ParserConfigurationException, IOException, SAXException {
         registrationPage_Step1_InsertEmail.closeMobilePopup();
         homePage.scrollDown(1);
         homePage.selectCategory(readFromThisFile("filterCategory"));
-        verifications.verifyTextEquals(searchResults_page.getTextSearchResults(),readFromThisFile("categoryName"),"Verify the category is correct");
-        verifications.verifyTrue(searchResults_page.areAllCategoryElemsAppears(),"Verify that all fashion elements appears");
+        verifications.verifyTextEquals(searchResults_page.getTextSearchResults(), readFromThisFile("categoryName"), "Verify the category is correct");
+        verifications.verifyTrue(searchResults_page.areAllCategoryElemsAppears(), "Verify that all fashion elements appears");
         searchResults_page.clickMainFiltersButton();
         searchResults_page.clickRegions();
-        verifications.verifyTrue(searchResults_page.areAllRegionsDropdownValuesMatchExpected(),"Verify that all regions on list are correct");
+        verifications.verifyTrue(searchResults_page.areAllRegionsDropdownValuesMatchExpected(), "Verify that all regions on list are correct");
         searchResults_page.selectRegion(readFromThisFile("filterRegion"));
         searchResults_page.clickCloseDropDown();
         searchResults_page.clickAmounts();
-        verifications.verifyTrue(searchResults_page.areAllAmountsDropdownValuesMatchExpected(),"Verify that all amounts on list are correct");
+        verifications.verifyTrue(searchResults_page.areAllAmountsDropdownValuesMatchExpected(), "Verify that all amounts on list are correct");
         searchResults_page.selectAmount(readFromThisFile("filterAmount"));
         searchResults_page.clickCloseDropDown();
         searchResults_page.clickFilterButton();
-        verifications.verifyTrue(searchResults_page.areSearchResultsApears(),"Verify search results after filter process");
+        verifications.verifyTrue(searchResults_page.areSearchResultsApears(), "Verify search results after filter process");
         return this;
     }
 
@@ -53,9 +53,9 @@ public class FilterAndSearchGifts_Flows extends BaseTest {
         applyFiltersAndVerify();
         searchResults_page.clickMainFiltersButton();
         searchResults_page.clickclearFilters();
-        verifications.verifyTrue(searchResults_page.isAllAreasDrowdownValueIsChecked(),"Verify that regions filter clearded");
+        verifications.verifyTrue(searchResults_page.isAllAreasDrowdownValueIsChecked(), "Verify that regions filter clearded");
         searchResults_page.clickAmounts2();
-        verifications.verifyTrue(searchResults_page.isAllAmountsDrowdownValueIsChecked(),"Verify that amounts filter clearded");
+        verifications.verifyTrue(searchResults_page.isAllAmountsDrowdownValueIsChecked(), "Verify that amounts filter clearded");
         return this;
     }
 }

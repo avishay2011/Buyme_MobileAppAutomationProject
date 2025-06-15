@@ -12,7 +12,7 @@ import static utils.Utilities.readFromThisFile;
 public class Tests04_CheckGiftCardBalance_Mobile extends BaseTest {
     @BeforeMethod
     public void checkPageReadyAndPreConditions() throws ParserConfigurationException, IOException, SAXException, InterruptedException {
-          checkGiftCardBalanceFlows.checkPageReadyAndPreConditions();
+        checkGiftCardBalanceFlows.checkPageReadyAndPreConditions();
     }
 
     @Test
