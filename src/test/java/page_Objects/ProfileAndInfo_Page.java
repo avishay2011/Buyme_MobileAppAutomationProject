@@ -12,7 +12,7 @@ public class ProfileAndInfo_Page extends BasePage{
     private By assigningGiftsButton=By.xpath("//*[contains(@text, 'שיוך')]");
 
     //Methods
-    public ProfileAndInfo_Page navigateToassigningGiftsPage(){
+    public ProfileAndInfo_Page navigateToassigningGiftsPage(){ ///Click on Assign gifts link
         click(assigningGiftsButton);
         return this;
     }

@@ -36,17 +36,41 @@ public class BasePage {
     ///Action methods on elements : click, send keys and etc
 
     public void click(By elementLocation) {
-        waitVisibility(elementLocation);
-        driver.findElement(elementLocation).click();
+        try {
+            WebElement element=waitVisibility(elementLocation);
+            element.click();
+            Allure.step("Clicking on element " + elementLocation.toString());
+        }
+        catch (NoSuchElementException | TimeoutException error){
+            Allure.step("Clicking failed: Element not found or timeout " + error.getMessage(), Status.FAILED);
+            takeScreenShot(driver);
+            throw error;
+        }
+        catch (Exception error) {
+            Allure.step("Clicking failed: Unexpected error - " + error.getMessage(), Status.FAILED);
+            takeScreenShot(driver);
+            throw new RuntimeException("Click failed on element: " + elementLocation, error);
+        }
     }
 
 
-
     public void sendKeys(By elementLocation, String text) {
-        WebElement el = driver.findElement(elementLocation);
-        el.click();
-        el.clear(); // אופציונלי
-        el.sendKeys(text);
+        try {
+            WebElement element=waitVisibility(elementLocation);
+            element.clear();
+            element.sendKeys(text);
+            Allure.step("Sending keys to the element " + elementLocation.toString());
+        }
+        catch (NoSuchElementException | TimeoutException error){
+            Allure.step("Sending keys failed: : Element not found or timeout" + error.getMessage(), Status.FAILED);
+            takeScreenShot(driver);
+            throw  error;
+        }
+        catch (Exception error) {
+            Allure.step("Send keys failed: Unexpected error - " + error.getMessage(), Status.FAILED);
+            takeScreenShot(driver);
+            throw error;
+        }
     }
 
 

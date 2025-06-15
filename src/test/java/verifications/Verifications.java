@@ -26,7 +26,7 @@ public class Verifications  {
     }
 
     @Step("Verify text equals : {elementName}")
-    public  void verifyTextEquals(String actual, String expected,String elementName) {  ///Element name clarify in allure report what field or message have checked
+    public  void verifyTextEquals(String actual, String expected,String description) {  ///Element name clarify in allure report what field or message have checked
         Allure.step("Expected :" +expected);                                         /// The report contain expected value
         Allure.step("Actual :"   +actual);                                             /// The report contain actual value
         if(actual.equalsIgnoreCase("Web element not found")){

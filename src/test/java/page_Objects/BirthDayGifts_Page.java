@@ -26,7 +26,7 @@ public class BirthDayGifts_Page extends BasePage{
         List<WebElement> birthDayGiftsList=getBirthDayGiftsList();
         return !birthDayGiftsList.isEmpty() && birthDayGiftsList.stream().allMatch(WebElement::isDisplayed) ;
     }
-    @Step("Select gift from list")
+    @Step("Select gift from list")  //Open dropdown and select value
     public BirthDayGifts_Page selectGift(String giftForSearch){
         List<WebElement> birthDayGiftsList=getBirthDayGiftsList();
         for (WebElement element:birthDayGiftsList){

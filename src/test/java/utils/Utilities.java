@@ -24,6 +24,8 @@ import java.util.Random;
 public class Utilities {
     static final String configPath = "src/testData/config.xml";
 
+
+
     public static String takeScreenShot(WebDriver driver) {
         try {
             String timeStamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
