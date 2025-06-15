@@ -158,8 +158,8 @@ public class BaseTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
     @AfterMethod
     public void tearDown() {
         if (driver != null) {

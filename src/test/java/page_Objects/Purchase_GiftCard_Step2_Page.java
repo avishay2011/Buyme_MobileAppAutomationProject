@@ -20,7 +20,7 @@ public class Purchase_GiftCard_Step2_Page extends BasePage{
     private By pageTitle=By.id("il.co.mintapp.buyme:id/title");
 
     //Functions
-    ///Method  verify by title that purchase page step 2 opened b
+    //Method  verify by title that purchase page step 2 opened b
     public boolean isPurchasePageStep2HowToSendOpened() throws ParserConfigurationException, IOException, SAXException { //The name price inside the url is indication that is step 1 in the purchase process
         return getText(pageTitle).equalsIgnoreCase(readFromThisFile("purchasePage2Message"));
     }
