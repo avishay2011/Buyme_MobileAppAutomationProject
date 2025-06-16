@@ -8,13 +8,13 @@ import page_Objects.RegistrationPage_Step1_InsertEmail;
 import page_Objects.SearchResults_Page;
 import test.BaseTest;
 import verifications.Verifications;
-
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-
 import static utils.Utilities.readFromThisFile;
 
 public class FilterAndSearchGifts_Flows extends BaseTest {
+
+    // Constructor to initialize page objects and utilities
     public FilterAndSearchGifts_Flows(AndroidDriver driver) {
         this.driver = driver;
         this.registrationPage_Step1_InsertEmail = new RegistrationPage_Step1_InsertEmail(driver);
@@ -24,6 +24,7 @@ public class FilterAndSearchGifts_Flows extends BaseTest {
         this.verifications = new Verifications(driver, softAssert);
     }
 
+    // Applies filters on gifts and verifies filtered results
     private FilterAndSearchGifts_Flows applyFiltersAndVerify() throws ParserConfigurationException, IOException, SAXException {
         registrationPage_Step1_InsertEmail.closeMobilePopup();
         homePage.scrollDown(1);
@@ -44,11 +45,13 @@ public class FilterAndSearchGifts_Flows extends BaseTest {
         return this;
     }
 
+    // Runs the filter and search gifts flow
     public FilterAndSearchGifts_Flows filterAndSearchGiftsFLow() throws ParserConfigurationException, IOException, SAXException {
         applyFiltersAndVerify();
         return this;
     }
 
+    // Runs the filter flow and then clears all filters verifying they are cleared
     public FilterAndSearchGifts_Flows filterAndClearFilterFields() throws ParserConfigurationException, IOException, SAXException {
         applyFiltersAndVerify();
         searchResults_page.clickMainFiltersButton();
@@ -59,5 +62,6 @@ public class FilterAndSearchGifts_Flows extends BaseTest {
         return this;
     }
 }
+
 
 

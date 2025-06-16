@@ -7,14 +7,13 @@ import page_Objects.HomePage;
 import page_Objects.RegistrationPage_Step1_InsertEmail;
 import test.BaseTest;
 import verifications.Verifications;
-
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-
 import static utils.Utilities.readFromThisFile;
 
 public class RegistrationAndLogin_Flows extends BaseTest {
 
+    // Constructor to initialize page objects and test utilities
     public RegistrationAndLogin_Flows(AndroidDriver driver) {
         this.driver = driver;
         this.registrationPage_Step1_InsertEmail = new RegistrationPage_Step1_InsertEmail(driver);
@@ -23,6 +22,7 @@ public class RegistrationAndLogin_Flows extends BaseTest {
         this.verifications = new Verifications(driver, softAssert);
     }
 
+    // Logs in user using a valid Google account and verifies username
     public RegistrationAndLogin_Flows loginValidUserNameGoogleAccountFlow() throws ParserConfigurationException, IOException, SAXException {
         registrationPage_Step1_InsertEmail.closeMobilePopup();
         homePage.navigateToRegistrationPage();
@@ -32,6 +32,7 @@ public class RegistrationAndLogin_Flows extends BaseTest {
         return this;
     }
 
+    // Performs login by email address
     private RegistrationAndLogin_Flows performLoginByEmail(String emailKey) throws ParserConfigurationException, IOException, SAXException {
         registrationPage_Step1_InsertEmail.closeMobilePopup();
         homePage.navigateToRegistrationPage();
@@ -41,12 +42,14 @@ public class RegistrationAndLogin_Flows extends BaseTest {
         return this;
     }
 
+    // Tests login flow with invalid email and verifies error message
     public RegistrationAndLogin_Flows loginInvalidUserNameFlow() throws ParserConfigurationException, IOException, SAXException {
         performLoginByEmail(readFromThisFile("wrongEmail"));
         verifications.verifyTextEquals(registrationPage_Step1_InsertEmail.getTextInvalidEmailErrorMessage(), readFromThisFile("wrongEmailMessage"), "Test Wrong Email Error message ");
         return this;
     }
 
+    // Tests login flow with invalid password and verifies error message
     public RegistrationAndLogin_Flows loginInvalidPasswordFlow() throws ParserConfigurationException, IOException, SAXException {
         performLoginByEmail(readFromThisFile("validEmail"));
         registrationPage_Step1_InsertEmail.click_Enter_After_InsertPassword();

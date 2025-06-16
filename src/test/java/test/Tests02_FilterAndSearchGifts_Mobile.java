@@ -6,7 +6,6 @@ import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
